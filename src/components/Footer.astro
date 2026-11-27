@@ -1,0 +1,23 @@
+---
+import { INSTAGRAM_URL, CITY } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="sec">
+  <div class="wrap in">
+    <img src="/logo-branca.png" alt="Machado Films" width="138" height="22" loading="lazy" />
+    <div class="meta">
+      <span>{CITY}</span>
+      <a href={INSTAGRAM_URL} target="_blank" rel="noopener">Instagram</a>
+      <span>© {year} Machado Films</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer { padding: 40px 0; }
+  .in { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+  img { height: 22px; width: auto; }
+  .meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 14px; color: var(--dim); }
+  .meta a { color: var(--mut); }
+  .meta a:hover { color: var(--ink); }
+</style>

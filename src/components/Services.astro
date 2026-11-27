@@ -1,0 +1,45 @@
+---
+import { services } from '../data/site';
+---
+<section id="servicos" class="services">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="h-lg">O que eu faço.</h2>
+      <p class="lead">Três formatos, o mesmo cuidado de cinema em cada entrega.</p>
+    </div>
+    <div class="grid">
+      {services.map((s) => (
+        <article class="cell rv">
+          <div class="icon3d">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A2CA44" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
+          </div>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+          <div class="meta mono">{s.meta}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services { padding: 0 0 140px; }
+  .head { margin-bottom: 48px; }
+  .head .lead { margin: 16px 0 0; max-width: 560px; }
+  .grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid rgba(255,255,255,.1); border-radius: 20px; overflow: hidden;
+  }
+  .cell { padding: 40px 32px 44px; background: linear-gradient(180deg, rgba(255,255,255,.025), transparent); }
+  .cell + .cell { border-left: 1px solid var(--line); }
+  h3 { margin: 28px 0 0; font-size: 26px; letter-spacing: -.02em; font-weight: 600; }
+  .cell p { margin: 12px 0 0; font-size: 16px; line-height: 1.6; color: var(--mut); }
+  .meta { margin-top: 22px; font-size: 12px; color: var(--dim); }
+
+  @media (max-width: 860px) {
+    .services { padding-bottom: 96px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .cell + .cell { border-left: 0; border-top: 1px solid var(--line); }
+    .cell { padding: 32px 24px; }
+  }
+</style>

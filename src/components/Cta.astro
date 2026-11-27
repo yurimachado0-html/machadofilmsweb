@@ -1,0 +1,35 @@
+---
+import { whatsappLink } from '../data/site';
+---
+<section id="contato" class="sec cta">
+  <div class="halo glow" aria-hidden="true"></div>
+  <div class="inner rv">
+    <h2>Vamos fazer sua marca aparecer?</h2>
+    <p class="lead">Conte sua ideia e receba um orçamento sob medida para o seu projeto.</p>
+    <a class="btn btn-lime big" href={whatsappLink} target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.3-5.3A8.4 8.4 0 1 1 21 11.5z"/></svg>
+      Solicitar orçamento no WhatsApp
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta { position: relative; padding: 160px 24px; text-align: center; overflow: hidden; }
+  .halo {
+    position: absolute; left: 50%; top: 50%; width: min(1000px, 140vw); height: 600px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(closest-side, rgba(162,202,68,.25), transparent);
+    pointer-events: none;
+  }
+  .inner { position: relative; }
+  h2 {
+    margin: 0 auto; max-width: 900px;
+    font-size: clamp(44px, 7vw, 80px); line-height: 1; letter-spacing: -.05em; font-weight: 650; text-wrap: balance;
+  }
+  .lead { margin: 24px auto 0; max-width: 520px; }
+  .big { margin-top: 40px; height: 58px; padding: 0 30px; font-size: 17px; box-shadow: 0 20px 60px rgba(162,202,68,.35); }
+  @media (max-width: 760px) {
+    .cta { padding: 104px 20px; }
+    .big { width: 100%; white-space: normal; height: auto; min-height: 58px; padding: 14px 20px; }
+  }
+</style>

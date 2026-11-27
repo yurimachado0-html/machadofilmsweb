@@ -1,0 +1,59 @@
+---
+import { reels } from '../data/site';
+---
+<section id="reels" class="sec reels">
+  <div class="wrap">
+    <div class="head rv">
+      <h2 class="h-lg">Feitos para o feed.</h2>
+      <p class="lead">Reels com ritmo, cor e narrativa — pensados para prender nos primeiros segundos.</p>
+    </div>
+    <div class="grid">
+      {reels.map((r) => (
+        <div class={`phone rv tone-${r.tone}`}>
+          {r.vimeoId ? (
+            <iframe
+              src={`https://player.vimeo.com/video/${r.vimeoId}?title=0&byline=0&portrait=0`}
+              title={r.label}
+              allow="autoplay; fullscreen; picture-in-picture"
+              loading="lazy"
+            ></iframe>
+          ) : (
+            <div class="empty">
+              <div class="ring"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="#ededed"/></svg></div>
+              {r.label}
+            </div>
+          )}
+          <span class="tag mono">{r.tag}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .reels { padding: 120px 0 140px; }
+  .head { text-align: center; margin-bottom: 56px; }
+  .head .lead { margin: 16px auto 0; max-width: 520px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 960px; margin: 0 auto; }
+  .phone {
+    position: relative; aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden;
+    border: 1px solid var(--line-2); box-shadow: 0 30px 70px rgba(0,0,0,.7);
+    transition: transform .4s, border-color .4s;
+  }
+  .phone:hover { transform: translateY(-6px); border-color: rgba(162,202,68,.6); }
+  .phone iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: rgba(255,255,255,.55); font-size: 13px; }
+  .ring { width: 58px; height: 58px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; }
+  .tag { position: absolute; left: 18px; bottom: 18px; font-size: 12px; color: var(--lime); pointer-events: none; }
+
+  @media (max-width: 760px) {
+    .reels { padding: 88px 0 96px; }
+    .grid {
+      grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 72%;
+      overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px;
+      margin: 0 -24px; padding: 0 24px 12px; scrollbar-width: none;
+    }
+    .grid::-webkit-scrollbar { display: none; }
+    .phone { scroll-snap-align: center; }
+  }
+</style>

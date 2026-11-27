@@ -1,0 +1,79 @@
+---
+import { worksTop, worksBottom } from '../data/site';
+// Duplicamos a lista para o loop ficar contínuo (anima até -50%)
+const top = [...worksTop, ...worksTop];
+const bottom = [...worksBottom, ...worksBottom];
+---
+<section id="trabalhos" class="sec carousel">
+  <div class="wrap head rv">
+    <h2 class="h-lg">Trabalhos que<br />fazem parar o scroll.</h2>
+    <a href="#reels">Ver todos os projetos →</a>
+  </div>
+
+  <div class="rows" aria-label="Trabalhos em destaque">
+    <div class="row">
+      <div class="track ltr">
+        {top.map((t, i) => (
+          <article class={`tile big tone-${t.tone}`} aria-hidden={i >= worksTop.length ? 'true' : undefined}>
+            <span class="tag mono">{t.tag}</span>
+            <div class="foot">
+              <h3>{t.title}</h3>
+              <span class="dur mono">{t.dur}</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="row">
+      <div class="track rtl">
+        {bottom.map((t, i) => (
+          <article class={`tile small tone-${t.tone}`} aria-hidden={i >= worksBottom.length ? 'true' : undefined}>
+            <span class="tag mono">{t.tag}</span>
+            <div class="foot"><h3>{t.title}</h3></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel { padding: 56px 0 120px; }
+  .head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+  .head a { font-size: 15px; }
+  .rows { display: flex; flex-direction: column; gap: 20px; }
+  .row {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .track { display: flex; gap: 20px; width: max-content; }
+  .ltr { animation: mq 60s linear infinite; }
+  .rtl { animation: mqr 70s linear infinite; }
+  .rows:hover .track { animation-play-state: paused; }
+
+  .tile {
+    position: relative; flex: none; overflow: hidden;
+    border-radius: 20px; border: 1px solid rgba(255,255,255,.1);
+    transition: transform .4s, border-color .4s;
+  }
+  .tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.75)); }
+  .tile:hover { transform: scale(1.025); border-color: rgba(162,202,68,.6); }
+  .big { width: 520px; height: 320px; }
+  .small { width: 420px; height: 260px; }
+  .tag { position: absolute; left: 22px; top: 18px; z-index: 1; font-size: 12px; color: rgba(255,255,255,.7); }
+  .foot { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 1; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+  h3 { margin: 0; font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: #fff; }
+  .small h3 { font-size: 22px; }
+  .dur { font-size: 12px; color: var(--lime); }
+
+  @media (max-width: 760px) {
+    .carousel { padding: 40px 0 80px; }
+    .big { width: 300px; height: 190px; }
+    .small { width: 240px; height: 150px; }
+    h3 { font-size: 20px; }
+    .small h3 { font-size: 17px; }
+    .rows { gap: 12px; }
+    .track { gap: 12px; }
+  }
+</style>

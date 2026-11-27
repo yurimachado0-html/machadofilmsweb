@@ -1,0 +1,39 @@
+---
+import { whatsappLink } from '../data/site';
+const links = [
+  { href: '#trabalhos', label: 'Trabalhos' },
+  { href: '#servicos', label: 'Serviços' },
+  { href: '#processo', label: 'Processo' },
+  { href: '#reels', label: 'Reels' },
+];
+---
+<header class="nav">
+  <nav class="wrap nav-in" aria-label="Principal">
+    <a href="#topo" class="logo" aria-label="Machado Films — início">
+      <img src="/logo-branca.png" alt="Machado Films" width="151" height="24" />
+    </a>
+    <div class="links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </div>
+    <a class="btn btn-lime btn-sm" href={whatsappLink} target="_blank" rel="noopener">Solicitar orçamento</a>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(5, 5, 5, 0.72);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+  .logo img { height: 24px; width: auto; }
+  .links { display: flex; gap: 28px; font-size: 14px; }
+  .links a { color: var(--mut); transition: color .2s; }
+  .links a:hover { color: var(--ink); }
+  @media (max-width: 760px) {
+    .links { display: none; }
+    .logo img { height: 20px; }
+    .nav-in { height: 60px; }
+  }
+</style>
